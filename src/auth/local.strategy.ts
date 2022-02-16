@@ -8,21 +8,17 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private authService: AuthService)
   {
     super({
-        clientID: '42',
-    clientSecret: '42',
-    callbackURL: "http://127.0.0.1:3000/auth/42/callback",
-    // profileFields: {
-    //     'username': 'login',
-    //     'displayName': 'displayname',
-    //     'name.familyName': 'last_name',
-    //     'name.givenName': 'first_name',
-    //   },
+        clientID: process.env.CLIENTID,
+        clientSecret: process.env.CLIENTSECRET,
+        callbackURL: process.env.CALL_BACK,
     });
   }
 
-  async validate (accessToken: string, refreshToken: string, profile: any) {
-    // const user = await this.authService.validateUser(profile);
-    return profile;
+  async validate (accessToken: string, refreshToken: string, profile: any) 
+  {
+      return profile;
   }
+
+  //
 
 }
